@@ -16,15 +16,19 @@ RUN cd /tmp/ \
 
 RUN rm -rf /var/cache/apk/*
 
-RUN cd /tmp/ \
+RUN mkdir /goroot/ \
+&& mkdir /gopath/ \
+&& cd /tmp/ \
 && wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz \
 && tar xzvf go1.6.linux-amd64.tar.gz \
-&& mkdir /goroot/ \
-&& cp -Rf go/bin/* /goroot/ \
-&& rm -rf /tmp/*
+&& cp -Rf go/* /goroot/ \
+&& rm -rf /tmp/* 
 
 ENV GOROOT /goroot
-ENV PATH $PATH:$GOROOT
+ENV GOPATH /gopath
+ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+
+RUN cd /gopath/ && go get github.com/erning/gorun
 
 #ENV PATH $PATH:/goroot
 
