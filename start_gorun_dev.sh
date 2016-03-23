@@ -6,7 +6,8 @@ echo $dd
 dt=`date +%Y%m%d%H%M%S`
 echo $dt
 
-tag=cmptech/auto_alpine_golang_with_gorun_dev
+#tag=cmptech/auto_alpine_golang_with_gorun_dev
+tag=cmptech/auto_alpine_golang_with_gorun
 
 #build first
 docker build -t $tag $dd
